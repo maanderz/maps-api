@@ -5,13 +5,18 @@ const bodyParser= require('body-parser');
 const app = express();
 const cors = require("cors");
 const MongoClient = require('mongodb').MongoClient;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cors());
+let corsOptions = {
+    origin: ['http://localhost:3000', 'https://cocky-brahmagupta-306473.netlify.app'],
+    credentials: true
+}
+app.use(cors(corsOptions));
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('listening on 3000')
 });
 
